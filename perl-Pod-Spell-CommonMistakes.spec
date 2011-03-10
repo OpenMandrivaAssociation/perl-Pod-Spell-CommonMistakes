@@ -1,5 +1,5 @@
 %define upstream_name    Pod-Spell-CommonMistakes
-%define upstream_version 0.01
+%define upstream_version 1.000
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
