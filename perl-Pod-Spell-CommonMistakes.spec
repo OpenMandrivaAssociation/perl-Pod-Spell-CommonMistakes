@@ -1,21 +1,21 @@
 %define upstream_name    Pod-Spell-CommonMistakes
 %define upstream_version 1.000
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Holds the wordlist data for Pod::Spell::CommonMistakes
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Pod/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Holds the wordlist data for Pod::Spell::CommonMistakes
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Pod/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(IO::Scalar)
-BuildRequires: perl(Pod::Spell)
-BuildRequires: perl(Module::Build::Compat)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(IO::Scalar)
+BuildRequires:	perl(Pod::Spell)
+BuildRequires:	perl(Module::Build::Compat)
+BuildArch:	noarch
 
 %description
 This module looks for any typos in your POD. It differs from the Pod::Spell
@@ -32,24 +32,30 @@ the values are the suggested spelling.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
 %make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc LICENSE README META.yml Changes
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
 
+%changelog
+* Sat Apr 23 2011 Funda Wang <fwang@mandriva.org> 1.0.0-2mdv2011.0
++ Revision: 657464
+- rebuild for updated spec-helper
+
+* Thu Mar 10 2011 Guillaume Rousse <guillomovitch@mandriva.org> 1.0.0-1
++ Revision: 643451
+- update to new version 1.000
+
+* Wed Aug 25 2010 Jérôme Quelin <jquelin@mandriva.org> 0.10.0-1mdv2011.0
++ Revision: 573148
+- import perl-Pod-Spell-CommonMistakes
 
