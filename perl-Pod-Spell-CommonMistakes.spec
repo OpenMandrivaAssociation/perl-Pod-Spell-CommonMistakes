@@ -1,15 +1,13 @@
 %define upstream_name    Pod-Spell-CommonMistakes
-%define upstream_version 1.002
-
 Name:		perl-%{upstream_name}
-Version:	%{upstream_version}
-Release:	1
+Version:	1.002
+Release:	2
 
 Summary:	Holds the wordlist data for Pod::Spell::CommonMistakes
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/apocalypse/perl-pod-spell-commonmistakes
-Source0:	https://cpan.metacpan.org/authors/id/A/AP/APOCAL/Pod-Spell-CommonMistakes-%{upstream_version}.tar.gz
+Source0:	https://cpan.metacpan.org/authors/id/A/AP/APOCAL/Pod-Spell-CommonMistakes-%{version}.tar.gz
 
 BuildRequires:	make
 BuildRequires:	perl-devel
@@ -30,7 +28,7 @@ misspelled words. If it contains keys, then the keys are the bad words and
 the values are the suggested spelling.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
